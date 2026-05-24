@@ -2,7 +2,18 @@
 
 ## Introdução
 
-Esta atividade demonstra persistência de dados em containers Docker utilizando volumes, bind mounts, backup e automação.
+Containers Docker são por natureza **efêmeros**: quando um container é removido, 
+todos os dados armazenados dentro dele são perdidos junto. Isso é chamado de 
+comportamento *stateless*.
+
+Para aplicações que precisam guardar dados (bancos de dados, arquivos, logs), 
+é necessário usar mecanismos de persistência externos ao container. O Docker 
+oferece duas soluções principais: **Named Volumes** (gerenciados pelo Docker, 
+ideais para produção) e **Bind Mounts** (mapeiam pastas do host, ideais para 
+desenvolvimento).
+
+O objetivo desta atividade é demonstrar na prática como configurar, validar, 
+fazer backup e automatizar a persistência de dados em ambientes containerizados.
 
 ## Ambiente Utilizado
 
@@ -91,3 +102,12 @@ USE empresa;
 SELECT * FROM usuarios;
 
 <img width="1200" height="723" alt="06-recriaçao do container e persistencia-validada" src="https://github.com/user-attachments/assets/7e61ae97-8cac-4e4f-abba-a1da4d15ae6c" />
+
+
+### Análise Técnica
+
+O Named Volume `mysql-prod-data` é armazenado em `/var/lib/docker/volumes/` 
+no host, fora do ciclo de vida do container. Ao remover o container com 
+`docker rm -f`, apenas o container é destruído — o volume permanece intacto. 
+Ao recriar um novo container apontando para o mesmo volume, o MySQL encontra 
+os arquivos de dados existentes e retoma o estado anterior, confirmando a persistência.
