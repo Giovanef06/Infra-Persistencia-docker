@@ -126,7 +126,7 @@ os arquivos de dados existentes e retoma o estado anterior, confirmando a persis
 ## Cenário 2 — Backup e Restauração
 Explicação técnica: Existem duas estratégias de backup. O backup de volume (.tar.gz) copia os arquivos brutos do MySQL — útil para migração de servidor. O mysqldump gera um arquivo SQL com os comandos para recriar o banco — mais portátil e legível. Na prática, use os dois.
 
-## cenario2/01-backup-tar-criado
+## Passo 1 — Backup com tar.gz (backup do volume inteiro)
 
 docker run --rm \
   -v mysql-prod-data:/data \
