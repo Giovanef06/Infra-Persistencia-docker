@@ -36,4 +36,25 @@ container iniciado
 
 <img width="734" height="407" alt="02-container-mysql" src="https://github.com/user-attachments/assets/7f514bcb-79d3-4d47-b2f9-05a97bfc3daa" />
 
+## ETAPA 3 — Criar tabela
+
+entrar:
+docker exec -it mysql-server mysql -u root -p
+
+senha:
+123456
+
+dentro do sql: 
+USE empresa;
+
+CREATE TABLE usuarios (
+ id INT AUTO_INCREMENT PRIMARY KEY,
+ nome VARCHAR(100),
+ email VARCHAR(100)
+);
+
+tabela criada
+
+<img width="784" height="539" alt="03-tabela-criada" src="https://github.com/user-attachments/assets/f60be521-46df-410e-9077-cbfaf63fccfa" />
+
 
