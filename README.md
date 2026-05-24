@@ -140,4 +140,12 @@ O que esse comando faz: sobe um container Ubuntu temporário (--rm = some ao ter
 
 <img width="733" height="170" alt="01-backup-tar-criado" src="https://github.com/user-attachments/assets/9bc1987f-b05b-4e9e-a6e6-0f4969f598c0" />
 
+## Passo 2 — Backup com mysqldump (backup SQL)
+
+docker exec mysql-prod mysqldump -uroot -psenha123 empresa > backups/empresa-dump.sql
+ls -lh backups/
+cat backups/empresa-dump.sql
+
+<img width="731" height="130" alt="02-mysqldump-criado" src="https://github.com/user-attachments/assets/b11b1180-9309-4cd8-8c64-e16e7449d15a" />
+
 
