@@ -16,12 +16,13 @@ O objetivo desta atividade é demonstrar na prática como configurar, validar,
 fazer backup e automatizar a persistência de dados em ambientes containerizados.
 
 ## Ambiente Utilizado
+- Ubuntu: 22.04.5 LTS
+- Docker Engine: 28.2.2
+- Docker Compose: 1.29.2
+- Git: 2.34.1
+- Hardware: 8GB RAM, arquitetura x86_64
 
-- Ubuntu Linux
-- Docker Engine
-- Docker Compose
-- Git
-- GitHub
+  
 
   # Cenário 1 — Persistência com MySQL
 
