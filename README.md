@@ -70,3 +70,8 @@ SELECT * FROM usuarios;
 
 <img width="981" height="766" alt="04-registros" src="https://github.com/user-attachments/assets/128a1999-b566-4eb9-8756-cbf7f7e8d9bc" />
 
+## ETAPA 6 — Remover container
+
+docker rm -f mysql-server
+
+<img width="993" height="486" alt="05-container-removido" src="https://github.com/user-attachments/assets/e924fc17-9efc-4922-bd76-af2addd8bfae" />
