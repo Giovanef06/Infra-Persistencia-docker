@@ -75,3 +75,19 @@ SELECT * FROM usuarios;
 docker rm -f mysql-server
 
 <img width="993" height="486" alt="05-container-removido" src="https://github.com/user-attachments/assets/e924fc17-9efc-4922-bd76-af2addd8bfae" />
+
+## ETAPA 7 e ETAPA 8 - Recriar container e Validar persistência
+
+docker run -d \
+--name mysql-server2 \
+-e MYSQL_ROOT_PASSWORD=123456 \
+-v mysql-prod-data:/var/lib/mysql \
+-p 3306:3306 \
+mysql:8
+
+docker exec -it mysql-server2 mysql -u root -p
+
+USE empresa;
+SELECT * FROM usuarios;
+
+<img width="1200" height="723" alt="06-recriaçao do container e persistencia-validada" src="https://github.com/user-attachments/assets/7e61ae97-8cac-4e4f-abba-a1da4d15ae6c" />
