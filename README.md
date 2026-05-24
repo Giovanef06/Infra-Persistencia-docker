@@ -57,4 +57,16 @@ tabela criada
 
 <img width="784" height="539" alt="03-tabela-criada" src="https://github.com/user-attachments/assets/f60be521-46df-410e-9077-cbfaf63fccfa" />
 
+## ETAPA 4 e ETAPA 5 — Inserir e Validar registros
+
+INSERT INTO usuarios(nome,email)
+VALUES
+('Carlos','carlos@gmail.com'),
+('Ana','ana@gmail.com'),
+('Marcos','marcos@gmail.com');
+
+SELECT * FROM usuarios;
+
+
+<img width="981" height="766" alt="04-registros" src="https://github.com/user-attachments/assets/128a1999-b566-4eb9-8756-cbf7f7e8d9bc" />
 
