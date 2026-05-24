@@ -122,3 +122,8 @@ no host, fora do ciclo de vida do container. Ao remover o container com
 `docker rm -f`, apenas o container é destruído — o volume permanece intacto.
 Ao recriar um novo container apontando para o mesmo volume, o MySQL encontra
 os arquivos de dados existentes e retoma o estado anterior, confirmando a persistência.
+
+## Cenário 2 — Backup e Restauração
+Explicação técnica: Existem duas estratégias de backup. O backup de volume (.tar.gz) copia os arquivos brutos do MySQL — útil para migração de servidor. O mysqldump gera um arquivo SQL com os comandos para recriar o banco — mais portátil e legível. Na prática, use os dois.
+
+
