@@ -198,6 +198,11 @@ do container. Mudanças feitas no host aparecem no container em tempo real,
 e vice-versa. É muito usado em desenvolvimento — você edita o código no
 seu editor, e o container vê as mudanças na hora.
 
+A principal diferença é que o **host** possui acesso direto ao sistema de arquivos
+nativo, enquanto o **container** acessa os mesmos arquivos através de uma camada
+de montagem gerenciada pelo Docker. Ambos enxergam os mesmos dados em tempo real,
+mas o container é isolado — só acessa o que foi explicitamente montado.
+
 ## Passo 1 — Criar diretório local
 
 ```bash
