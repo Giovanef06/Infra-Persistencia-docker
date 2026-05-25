@@ -208,6 +208,7 @@ docker run -d \
   sleep infinity
 
   ## Passo 3 — Validar acesso dentro do container 
+  
   # Acessa o container e lista o diretório montado
 docker exec -it container-bind ls /app/dados
 docker exec -it container-bind cat /app/dados/arquivo-host.txt
@@ -215,6 +216,17 @@ docker exec -it container-bind cat /app/dados/arquivo-host.txt
 docker ps
 
 <img width="734" height="311" alt="02-container-bind-rodando" src="https://github.com/user-attachments/assets/1249fe29-4dd3-4144-bc58-ca60b422dcff" />
+
+
+## Passo 4 — Criar arquivo dentro do container e ver no host
+# Cria arquivo de dentro do container
+docker exec -it container-bind bash -c "echo 'Arquivo criado DENTRO do container' > /app/dados/arquivo-container.txt"
+
+# Verifica no host que o arquivo apareceu
+ls ~/docker-bind-test/
+cat ~/docker-bind-test/arquivo-container.txt
+
+<img width="738" height="213" alt="04-arquivo-container-no-host" src="https://github.com/user-attachments/assets/7a9d69ba-e382-4a04-98ab-53cfbdf42b7a" />
 
 
 
