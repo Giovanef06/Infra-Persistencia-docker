@@ -370,4 +370,9 @@ docker ps | grep mysql-prod
 
 <img width="1075" height="467" alt="01-script-executado" src="https://github.com/user-attachments/assets/884544ec-9cb0-4945-a2c7-d55189af427a" />
 
+## Passo 4 — Confirmar o arquivo gerado
+
+ls -lh backups/
+
+<img width="737" height="432" alt="02-backup-gerado" src="https://github.com/user-attachments/assets/95de8c95-161b-4ea8-abb4-4d9d73a40b82" />
 
