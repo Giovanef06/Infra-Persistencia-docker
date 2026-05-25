@@ -240,3 +240,15 @@ docker volume ls
 <img width="731" height="430" alt="01-volume-compartilhado" src="https://github.com/user-attachments/assets/995a4e5f-1b1a-48be-aba2-8a5ea487f7a7" />
 
 
+## Passo 2 — Container produtor (escreve dados)
+
+docker run -d \
+  --name container-produtor \
+  -v volume-compartilhado:/dados \
+  ubuntu \
+  bash -c "while true; do echo \"Mensagem: \$(date)\" >> /dados/log.txt; sleep 3; done"
+
+docker ps
+
+<img width="734" height="324" alt="02-produtor-rodando" src="https://github.com/user-attachments/assets/c42f15e6-23a4-48ba-bfec-b29f2e23fedb" />
+
