@@ -207,8 +207,14 @@ docker run -d \
   ubuntu \
   sleep infinity
 
+  ## Passo 3 — Validar acesso dentro do container 
+  # Acessa o container e lista o diretório montado
+docker exec -it container-bind ls /app/dados
+docker exec -it container-bind cat /app/dados/arquivo-host.txt
+
 docker ps
 
 <img width="734" height="311" alt="02-container-bind-rodando" src="https://github.com/user-attachments/assets/1249fe29-4dd3-4144-bc58-ca60b422dcff" />
+
 
 
