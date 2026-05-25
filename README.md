@@ -185,3 +185,7 @@ sleep 15
 docker exec -it mysql-prod mysql -uroot -psenha123 empresa -e "SELECT * FROM usuarios;"
 
 <img width="1056" height="584" alt="04-dados-restaurados" src="https://github.com/user-attachments/assets/3d204a12-492e-4a64-bf83-51d1b48d479b" />
+
+
+## Cenário 3 — Bind Mount
+Explicação técnica: Bind Mount é diferente de Named Volume. Em vez de o Docker gerenciar o armazenamento, você mapeia uma pasta real do seu computador (host) diretamente para dentro do container. Mudanças feitas no host aparecem no container em tempo real, e vice-versa. É muito usado em desenvolvimento — você edita o código no seu editor, e o container que está rodando a aplicação vê as mudanças na hora.
