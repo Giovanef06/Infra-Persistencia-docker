@@ -280,3 +280,5 @@ docker exec container-consumidor tail -5 /dados/log.txt
 
 <img width="754" height="640" alt="04-dados-em-tempo-real pt2" src="https://github.com/user-attachments/assets/4c74dcf4-6208-4da0-8062-66da38eebd96" />
 
+## Cenário 5 — Automação de Backup com Bash
+Explicação técnica: Em ambientes reais de produção, backups são feitos automaticamente por scripts agendados (via cron). Aqui você cria um script Bash que encapsula toda a lógica de backup — geração do nome com data/hora, execução do dump, compressão — de forma que qualquer pessoa (ou o próprio sistema) possa executar com um único comando.
