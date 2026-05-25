@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8
+    container_name: mysql-server2
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_DATABASE: empresa
+    volumes:
+      - mysql-prod-data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+
+volumes:
+  mysql-prod-data:
+    external: true
