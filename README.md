@@ -252,3 +252,19 @@ docker ps
 
 <img width="734" height="324" alt="02-produtor-rodando" src="https://github.com/user-attachments/assets/c42f15e6-23a4-48ba-bfec-b29f2e23fedb" />
 
+
+## Passo 3 — Container consumidor (lê dados em tempo real)
+
+docker run -d \
+  --name container-consumidor \
+  -v volume-compartilhado:/dados \
+  ubuntu \
+  sleep infinity
+
+# Aguarda alguns segundos para o produtor gerar mensagens
+sleep 10
+
+# Consumidor lê o arquivo gerado pelo produtor
+docker exec container-consumidor cat /dados/log.txt
+
+<img width="913" height="719" alt="03-consumidor-lendo-dados" src="https://github.com/user-attachments/assets/71f915c9-e6e3-4cc8-9269-cfa6422a0e61" />
