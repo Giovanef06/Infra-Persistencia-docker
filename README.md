@@ -268,3 +268,11 @@ sleep 10
 docker exec container-consumidor cat /dados/log.txt
 
 <img width="913" height="719" alt="03-consumidor-lendo-dados" src="https://github.com/user-attachments/assets/71f915c9-e6e3-4cc8-9269-cfa6422a0e61" />
+
+## Passo 4 — Validar em tempo real
+
+# Aguarda mais 10 segundos e lê novamente — deve ter mais linhas
+sleep 10
+docker exec container-consumidor wc -l /dados/log.txt
+docker exec container-consumidor tail -5 /dados/log.txt
+
