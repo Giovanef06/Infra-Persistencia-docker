@@ -282,3 +282,80 @@ docker exec container-consumidor tail -5 /dados/log.txt
 
 ## Cenário 5 — Automação de Backup com Bash
 Explicação técnica: Em ambientes reais de produção, backups são feitos automaticamente por scripts agendados (via cron). Aqui você cria um script Bash que encapsula toda a lógica de backup — geração do nome com data/hora, execução do dump, compressão — de forma que qualquer pessoa (ou o próprio sistema) possa executar com um único comando.
+
+## Passo 1 — Criar o script de backup
+Edite o arquivo scripts/backup.sh
+
+nano scripts/backup.sh
+
+#!/bin/bash
+
+# ============================================
+# Script de Backup Automatizado - MySQL Docker
+# ============================================
+
+CONTAINER="mysql-prod"
+BANCO="empresa"
+USUARIO="root"
+SENHA="senha123"
+DIR_BACKUP="$(pwd)/backups"
+DATA=$(date +"%Y%m%d_%H%M%S")
+ARQUIVO_SQL="$DIR_BACKUP/backup_${DATA}.sql"
+ARQUIVO_GZ="$DIR_BACKUP/backup_${DATA}.tar.gz"
+
+echo "======================================"
+echo "Iniciando backup: $(date)"
+echo "======================================"
+
+# Verifica se o container está rodando
+if ! docker ps --format '{{.Names}}' | grep -q "^${CONTAINER}$"; then
+  echo "ERRO: container '$CONTAINER' não está rodando."
+  exit 1
+fi
+
+# Cria diretório de backup se não existir
+mkdir -p "$DIR_BACKUP"
+
+# Gera dump SQL
+echo "[1/3] Gerando dump SQL..."
+docker exec "$CONTAINER" mysqldump -u"$USUARIO" -p"$SENHA" "$BANCO" > "$ARQUIVO_SQL"
+
+# Comprime o dump
+echo "[2/3] Comprimindo arquivo..."
+tar czf "$ARQUIVO_GZ" -C "$DIR_BACKUP" "$(basename $ARQUIVO_SQL)"
+rm "$ARQUIVO_SQL"
+
+# Resultado
+echo "[3/3] Backup concluído!"
+echo "Arquivo gerado: $ARQUIVO_GZ"
+echo "Tamanho: $(du -h $ARQUIVO_GZ | cut -f1)"
+echo "======================================"
+
+## Passo 2 — Criar o script de restauração
+
+nano scripts/restore.sh
+
+#!/bin/bash
+
+# ============================================
+# Script de Restauração - MySQL Docker
+# ============================================
+
+CONTAINER="mysql-prod"
+BANCO="empresa"
+USUARIO="root"
+SENHA="senha123"
+ARQUIVO_GZ="$1"
+
+if [ -z "$ARQUIVO_GZ" ]; then
+  echo "Uso: ./restore.sh <arquivo.tar.gz>"
+  exit 1
+fi
+
+echo "Restaurando de: $ARQUIVO_GZ"
+tar xzf "$ARQUIVO_GZ" -C /tmp/
+ARQUIVO_SQL=$(tar tzf "$ARQUIVO_GZ" | head -1)
+docker exec -i "$CONTAINER" mysql -u"$USUARIO" -p"$SENHA" "$BANCO" < "/tmp/$ARQUIVO_SQL"
+echo "Restauração concluída!"
+
+
