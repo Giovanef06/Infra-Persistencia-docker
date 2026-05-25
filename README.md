@@ -148,4 +148,40 @@ cat backups/empresa-dump.sql
 
 <img width="731" height="130" alt="02-mysqldump-criado" src="https://github.com/user-attachments/assets/b11b1180-9309-4cd8-8c64-e16e7449d15a" />
 
+## Passo 3 — Simular perda de dados (o "desastre")
 
+# Remove container E o volume — simula perda total
+docker rm -f mysql-prod
+docker volume rm mysql-prod-data
+
+# Confirma que o volume sumiu
+docker volume ls
+
+<img width="1052" height="335" alt="03-volume-removido-desastre" src="https://github.com/user-attachments/assets/95652ef6-6d4c-4e6b-a02c-e0ecbb9dad57" />
+
+
+## Passo 4 — Restaurar os dados
+
+# Recria o volume
+docker volume create mysql-prod-data
+
+# Restaura os arquivos brutos do volume
+docker run --rm \
+  -v mysql-prod-data:/data \
+  -v $(pwd)/backups:/backup \
+  ubuntu \
+  tar xzf /backup/mysql-prod-backup.tar.gz -C /data
+
+# Sobe o container novamente
+docker run -d \
+  --name mysql-prod \
+  -e MYSQL_ROOT_PASSWORD=senha123 \
+  -v mysql-prod-data:/var/lib/mysql \
+  mysql:8.0
+
+sleep 15
+
+# Valida os dados
+docker exec -it mysql-prod mysql -uroot -psenha123 empresa -e "SELECT * FROM usuarios;"
+
+<img width="1056" height="584" alt="04-dados-restaurados" src="https://github.com/user-attachments/assets/3d204a12-492e-4a64-bf83-51d1b48d479b" />
