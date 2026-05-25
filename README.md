@@ -358,4 +358,16 @@ ARQUIVO_SQL=$(tar tzf "$ARQUIVO_GZ" | head -1)
 docker exec -i "$CONTAINER" mysql -u"$USUARIO" -p"$SENHA" "$BANCO" < "/tmp/$ARQUIVO_SQL"
 echo "Restauração concluída!"
 
+## Passo 3 — Dar permissão e executar
+
+chmod +x scripts/backup.sh scripts/restore.sh
+
+# Garante que o container mysql-prod está rodando
+docker ps | grep mysql-prod
+
+# Executa o script
+./scripts/backup.sh
+
+<img width="1075" height="467" alt="01-script-executado" src="https://github.com/user-attachments/assets/884544ec-9cb0-4945-a2c7-d55189af427a" />
+
 
