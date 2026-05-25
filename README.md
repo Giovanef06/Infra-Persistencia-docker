@@ -276,3 +276,7 @@ sleep 10
 docker exec container-consumidor wc -l /dados/log.txt
 docker exec container-consumidor tail -5 /dados/log.txt
 
+<img width="765" height="673" alt="04-dados-em-tempo-real pt1" src="https://github.com/user-attachments/assets/2e45c18f-6bf9-4266-a436-244b96bbec5a" />
+
+<img width="754" height="640" alt="04-dados-em-tempo-real pt2" src="https://github.com/user-attachments/assets/4c74dcf4-6208-4da0-8062-66da38eebd96" />
+
