@@ -231,3 +231,12 @@ cat ~/docker-bind-test/arquivo-container.txt
 ## Cenário 4 — Compartilhamento Entre Containers
 Explicação técnica: Um Named Volume pode ser montado em múltiplos containers ao mesmo tempo. Isso permite que um container "produtor" escreva dados e outro container "consumidor" leia esses dados em tempo real, sem nenhuma comunicação de rede entre eles — só pelo sistema de arquivos compartilhado. Isso simula padrões reais como um servidor web escrevendo logs que um agente de coleta lê.
 
+## Passo 1 — Criar volume compartilhado
+
+docker volume create volume-compartilhado
+docker volume ls
+
+
+<img width="731" height="430" alt="01-volume-compartilhado" src="https://github.com/user-attachments/assets/995a4e5f-1b1a-48be-aba2-8a5ea487f7a7" />
+
+
