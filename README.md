@@ -198,3 +198,17 @@ ls ~/docker-bind-test/
 
 <img width="736" height="116" alt="01-diretorio-host" src="https://github.com/user-attachments/assets/1619c29b-59a8-4e0e-b690-a746b277c418" />
 
+
+## Passo 2 — Subir container com Bind Mount
+
+docker run -d \
+  --name container-bind \
+  -v ~/docker-bind-test:/app/dados \
+  ubuntu \
+  sleep infinity
+
+docker ps
+
+<img width="734" height="311" alt="02-container-bind-rodando" src="https://github.com/user-attachments/assets/1249fe29-4dd3-4144-bc58-ca60b422dcff" />
+
+
